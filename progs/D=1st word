@@ -1,0 +1,14 @@
+var s:string;
+    l:integer;
+begin
+  readln(s);
+  repeat
+    if s[1]=' ' then
+      Delete(s,1,1);
+  until s[1]<>' ';
+  l:=Pos(' ',s);
+  if l=0 then
+    writeln(s)
+  else 
+    writeln(copy(s,1,l));
+end.
