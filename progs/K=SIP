@@ -1,0 +1,14 @@
+var
+  inp,outp:string;
+  i:integer;
+begin
+  readln(inp);
+  outp:=Copy(inp,1,1)+'.';
+  i:=pos(' ',inp);
+  Delete(inp,1,i);
+  outp:=outp+copy(inp,1,1)+'.';
+  i:=pos(' ',inp);
+  delete(inp,1,i);
+  outp:=inp+' '+outp;
+  writeln(outp);
+end.
