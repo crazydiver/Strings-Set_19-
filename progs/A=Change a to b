@@ -1,0 +1,15 @@
+var s:string;
+    i,outp:integer;
+begin
+  readln(s);
+  for i:=1 to Length(s) do
+    if s[i]='a' then
+      begin
+        write('b');
+        outp+=1;
+      end
+    else
+      (write(s[i]));
+  writeln;
+  writeln(outp);
+end.
