@@ -1,0 +1,19 @@
+var
+  s,z1,z2:string;
+  i,l:integer;
+begin
+  readln(s);readln(z1);readln(z2);
+  l:=length(s);
+  repeat
+    if copy(s,1,length(z1))=z1 then
+      begin
+        delete(s,1,length(z1));
+        write(z2);
+      end
+    else
+      begin
+        write(copy(s,1,1));
+        delete(s,1,1);
+      end;
+  until s='';
+end.
