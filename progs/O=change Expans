@@ -1,0 +1,23 @@
+var
+  in1, exp: string;
+  kol, num, i: integer;
+begin
+  kol := 0;
+  readln(in1);
+  readln(exp);
+  while(pos('.', in1) > 0) do
+    begin
+      num := pos('.', in1);
+      delete(in1, pos('.', in1), 1);
+      insert('/', in1, num);
+      kol += 1;
+    end;
+  delete(in1, num, length(in1) - num + 1);
+  for i := 0 to kol - 2 do
+    begin
+      num := pos('/', in1);
+      delete(in1, pos('/', in1), 1);
+      insert('.', in1, num);
+    end;
+  writeln(in1, '.', exp);
+end.
