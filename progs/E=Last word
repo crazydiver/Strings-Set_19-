@@ -1,0 +1,25 @@
+procedure GetLastWord (s :string; var word1 :string);
+var
+  StLnth, i :integer;
+begin
+  word1 := '';
+  StLnth := length (s);
+  while copy (s, StLnth, 1) = ' ' do
+    begin
+      delete (s, StLnth, 1);
+      StLnth := length (s);
+    end;
+  while (copy (s, StLnth - i, 1) <> ' ') and ((Stlnth - i) <> 0)  do
+    begin
+      word1 := copy (s, StLnth - i, 1) + word1;
+      i += 1
+    end
+end;
+
+var
+  s, Word1 :string;
+begin
+  readln (s);
+  GetLastWord (s, word1);
+  writeln (word1);
+end.
