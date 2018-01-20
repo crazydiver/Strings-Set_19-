@@ -1,0 +1,86 @@
+function bin2dec(s:string):integer;
+var x,i:integer;
+begin
+  x:=0;
+  for i:=1 to length(s) do
+  begin
+     x:=x+ord(s[i])-ord('0');
+     if i<length(s) then x:=x*2;
+  end;
+bin2dec:=x;
+end; 
+
+var
+  s, s1, res,min: string;
+  i, n, min1,rr: longint;
+  less0,smth: boolean;
+begin
+  readln(s);
+  res := '';
+  min1 := -1;
+  less0 := true;
+  n := pos('-', s);
+  if n <> 0 then
+    begin
+      delete(s, 1, 1);
+      less0 := false;
+    end;
+  for i := length(s) downto 1 do
+    begin
+      s1 := copy(s, i, 1);
+      if s1 = '1' then
+        res := '0001' + res
+      else 
+        if s1 = '2' then
+          res := '0010' + res
+      else
+        if s1 = '3' then
+          res := '0011' + res
+      else
+        if s1 = '4' then
+          res := '0100' + res
+      else
+        if s1 = '5' then
+          res := '0101' + res
+      else
+        if s1 = '6' then
+          res := '0110' + res
+      else
+        if s1 = '7' then
+          res := '0111' + res
+      else
+        if s1 = '8' then
+          res := '1000' + res
+      else
+        if s1 = '9' then
+          res := '1001' + res
+      else
+        if s1 = '0' then
+          res := '0000' + res
+      else
+        if s1 = 'A' then
+          res := '1010' + res
+      else
+        if s1 = 'B' then
+          res := '1011' + res
+      else
+        if s1 = 'C' then
+          res := '1100' + res
+      else
+        if s1 = 'D' then
+          res := '1101' + res
+      else
+        if s1 = 'E' then
+          res := '1110' + res
+      else
+        if s1 = 'F' then
+          res := '1111' + res;
+    end;
+  while copy(res, 1, 1) = '0' do
+    delete(res, 1, 1);
+  rr:=bin2dec(res);
+  res:=IntToStr(rr);
+  if not less0 then
+      min:='-';
+  writeln(min,res);
+end.
