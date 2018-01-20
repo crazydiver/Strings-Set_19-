@@ -1,0 +1,13 @@
+var
+  s: string;
+  p: integer;
+begin
+  readln(s);
+  s:=s + '\  ';
+  while copy(s, 1, 1) <> ' ' do
+    begin
+     p := Pos('\', s);
+      writeln(copy(s,1,p-1));
+      delete(s,1,p);
+   end;
+end.
