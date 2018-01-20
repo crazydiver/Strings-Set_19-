@@ -1,0 +1,13 @@
+var
+  s:string;
+  i,j:integer;
+begin
+  readln(s);
+  while s[1]=' ' do
+    delete(s,1,1);
+  s:=s+' ';
+  for i:=1 to length(S) do
+    if(copy(s,i,1)=' ')and(copy(s,i+1,1)<>' ') then
+      j+=1;
+  writeln(j);
+end.
