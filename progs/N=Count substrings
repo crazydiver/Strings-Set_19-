@@ -1,0 +1,18 @@
+var
+  s,zam:string;
+  i,count:integer;
+begin
+  readln(s);readln(zam);
+  i:=1;
+  while s<>'' do
+    begin
+      if copy(s,1,length(zam))=zam then
+        begin
+          delete(s,1,length(zam));
+          count+=1;
+        end
+      else
+        delete(s,1,1);
+    end;
+  writeln(count);
+end.
