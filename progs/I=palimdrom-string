@@ -1,0 +1,15 @@
+var
+  inp,s1:string;
+  i:boolean;
+  comp,sp:integer;
+begin
+  readln(inp);
+  repeat
+    sp:=pos(' ',inp);
+    delete(inp,sp,1);
+  until sp=0;
+  s1:=reversestring(inp);
+  comp:=comparestr(inp,s1);
+  i:=comp=0;
+  if i then writeln('YES') else writeln('NO');
+end.
