@@ -1,0 +1,32 @@
+var
+  in1: string;
+  i1, i2: integer;
+  mas: array[1..50] of integer;
+  out1: integer;
+begin
+  readln(in1);
+  for i1 := 1 to length(in1) do
+    begin
+      if in1[i1] = 'I' then
+        mas[i1] := 1;
+      if in1[i1] = 'V' then 
+        mas[i1] := 5;
+      if in1[i1] = 'X' then 
+        mas[i1] := 10;
+      if in1[i1] = 'L' then 
+        mas[i1] := 50;
+      if in1[i1] = 'C' then
+        mas[i1] := 100;
+      if in1[i1] = 'D' then
+        mas[i1] := 500;
+      if in1[i1] = 'M' then
+        mas[i1] := 1000;
+    end;
+  for i1 := 1 to length(in1) do
+    begin
+      out1 := out1 + mas[i1];
+      if(i1 > 1) and (mas[i1 - 1] < mas[i1]) then 
+        out1 := out1 - 2 * mas[i1 - 1];
+    end;
+  write(out1);
+end.
