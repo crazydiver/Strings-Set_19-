@@ -1,0 +1,101 @@
+var
+  in1, chr, out1, last3: string;
+  i: integer;
+begin
+  readln(in1);
+    if copy(in1, 1, 1) = '-' then
+      begin
+        write('-');
+        delete(in1, 1, 1);
+      end;
+  for i := 1 to length(in1) do
+    begin
+      chr := copy(in1, i, 1);
+      if chr = 'A' then 
+        chr := '1010'
+      else 
+        if chr = 'B' then 
+          chr := '1011'
+      else
+        if chr = 'C' then 
+          chr := '1100'
+      else
+        if chr = 'D' then 
+          chr := '1101'
+      else
+        if chr = 'E' then 
+          chr := '1110'
+      else
+        if chr = 'F' then 
+          chr := '1111'
+      else
+        if chr = '0' then
+          chr := '0000'
+      else
+        if chr = '1' then 
+          chr := '0001'
+      else
+        if chr = '2' then 
+          chr := '0010'
+      else
+        if chr = '3' then 
+          chr := '0011'
+      else
+        if chr = '4' then
+          chr := '0100'
+      else
+        if chr = '5' then
+          chr := '0101'
+      else
+        if chr = '6' then 
+          chr := '0110'
+      else
+        if chr = '7' then 
+          chr := '0111'
+      else
+        if chr = '8' then 
+          chr := '1000'
+      else
+        if chr = '9' then 
+          chr := '1001';
+      out1 := out1 + chr;
+    end;
+  while copy(out1, 1, 1) = '0' do
+    delete(out1, 1, 1);
+  if length(out1) mod 3 = 1 then
+    out1 := '00' + out1
+  else 
+    if length(out1) mod 3 = 2 then
+      out1 := '0' + out1;
+  in1 := out1;
+  out1 := '';
+  while length(in1) > 0 do
+    begin
+      last3 := copy(in1, length(in1) - 2, 3);
+      if last3 = '000' then 
+        out1 := '0' + out1
+      else 
+        if last3 = '001' then 
+          out1 := '1' + out1
+      else 
+        if last3 = '010' then 
+        out1 := '2' + out1
+      else 
+        if last3 = '011' then
+          out1 := '3' + out1
+      else 
+        if last3 = '100' then
+          out1 := '4' + out1
+      else 
+        if last3 = '101' then 
+          out1 := '5' + out1
+      else
+        if last3 = '110' then 
+          out1 := '6' + out1
+      else 
+        if last3 = '111' then 
+          out1 := '7' + out1;
+      delete(in1, length(in1) - 2, 3);
+    end;
+  writeln(out1);
+end.
