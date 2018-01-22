@@ -1,0 +1,123 @@
+const
+  symb: string[36] = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'; {����� ������ ��� ������
+ � ��� ��������}
+var
+  n, r: real;
+  res, s, s2, s3: string;
+  t, cc, ind, cc2, k: integer;
+
+{��������� ��� ���������� ������� � ����� ����� �����}
+procedure Del(var ss: string);
+var
+  i: integer;
+begin
+  s2 := '';
+  for i := 1 to length(ss) do  {��� �� ������}
+    if ss[i] in [',', '.'] then {���� ������ ������ � ��������� ��}
+      begin
+        ind := i; {��������� ��� ������}
+        break{�������� ����}
+      end
+    else    {�����}
+      s2 := s2 + ss[i]; {����� � ������ �� �������� ����� �����}
+  s3 := '';  {�������������� ����������}
+  if ind <> 0 then {���� ������ �� ��������� [',','.'] ���� � ������ ��}
+    begin
+      delete(s, 1, ind); {������� � ������ ������� �� ind �������� �� ������
+      (�.�. ����� ����� + [',','.'])}
+      s3 := ss; {������� �������� ������ ������� � s3 (�.�. ������� �����)}
+    end;
+end;
+ 
+{������� ��� �������� (����� ����� �����) �� ����� �� � 10-�}
+function ToDec(var ss: string; cc: byte): integer;
+var
+  i, n, sum: integer;
+begin
+  sum := 0;
+  n := length(ss); {����������� n - ����� ������ ss}
+  for i := 1 to n do {��� �� ������}
+    begin
+      dec(n); {��������� ������� �� 1}
+      sum := sum + round((pos(ss[i], symb) - 1) * exp(ln(cc) * n)); {��������� ����� (��������� �
+      ������ �� ������� �������-1 (pos(ss[i],symb)-1)) � ������� dec(n)}
+    end;
+  ToDec := sum;
+end;
+ 
+{������� ��� �������� ����� ����� ����� �� 10-� � ����� ��}
+function Cel(d: real; c: integer): string;
+var
+  s: string;
+  n2: integer;
+begin
+  n2 := round(int(d)); {���� ����� ����� �� �����}
+  s := '';   
+  repeat
+    s := ((symb[n2 mod c + 1]) + s); {��������� ���� ����� �� ����� ����� ���� ���� ����� ����� ���
+    ������� ����� �� ��������� � ���� ������� + 1 �� ������� ����� ����� �� 16, ����������
+    ��������� ����������� � ������ s}
+    n2 := n2 div c;
+  until (n2 = 0);
+  Cel := s;
+end;
+ 
+{������� ��� �������� ������� ����� ����� �� 10-� � ����� ��}
+function Drob(var d: real; t, c: integer): string;
+var
+  s: string;
+  l2, k, n3: real;
+  i, l: integer;
+begin
+  k := d - int(d);
+  s := '';
+  i := 0;
+  if t <> 0 then  {���� �������� �� ����� 0 �� ���������}
+    begin
+      repeat
+        l2 := k * c;
+        k := frac(l2); {�������� ����� �� c (��������� ��) ���� ����� ����� �
+        ����� �������� �������}
+        s := s + symb[round(int(l2)) + 1]; {���� � ������ ������� �� ������� round(int(l2))+1
+        (����� ����� �� ��������� ����� �� c +1)}
+        inc(i); {����������� �������}
+      until i = t;
+    end
+  else  {�����}
+   s := '0'; {����������� s '0'}
+  Drob := s;
+end;
+ 
+{������� (������� �����) �� ������������ ��  � 10-�}
+function drob2(ss: string; c: integer): real;
+var
+  i: integer;
+  sum: real;
+begin
+  for i := 1 to length(ss) do {��� �� ������ (�� ������� �����)}
+    sum := sum + (pos(ss[i], symb) - 1) * exp(ln(c) * -i); {�������� ������� ������� ������ -1
+  �� �������� ������� ��������� � ������� -i}
+  drob2 := sum;
+end;
+
+var min:string;
+begin
+  readln(s);
+  read(cc2);
+  readln(cc);
+  if s[1]='-' then
+    begin
+      min:='-';
+      delete(s,1,1);
+    end;
+  Del(s); {��������� �� ������� � ����� ����� ������}
+  if ind = 0 then
+    res := Cel(ToDec(s2, cc2), cc) {��������� ������� �� ����� � 10-� ��, � ����� ��
+    10-� � �����}
+  else
+    begin
+      r := drob2(s3, cc2); {��������� ������� ����� �����}
+      res := Cel(ToDec(s2, cc2), cc) + ',' + drob(r, length(s3), cc); {��������� �� ����� �� � ������ }
+    end;
+  write(min,res);
+end.
